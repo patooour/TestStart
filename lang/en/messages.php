@@ -15,6 +15,11 @@ return [
 
     'welcome' => 'hello my friend ',
     'i want' => 'i want to be a doctor',
+    'firstName required' => 'this field required ',
+    'lastName required' => 'this field required  ',
+    'email required' => 'this field required  ',
+    'username required' => 'this field required  ',
+    'password required' => 'this field required  ',
 
 
 ];

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,12 +55,27 @@ Route::group(['prefix'=>'cart','middleware'=>['auth']],function (){
 
 
 Route::get('/home',function (){
-   return view('landpage');
+
+  $users = \App\Models\User::first();
+
+   return $users;
 });
 
 
 Route::get('/test11/{id?}',function ($id){
     return 'sasasas' . $id;
 });
+
+
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){
+        Route::get('/home',function (){
+        return view('landpage');     });
+
+
+    });
+
+
+
 
 

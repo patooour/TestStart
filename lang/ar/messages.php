@@ -15,6 +15,12 @@ return [
 
     'welcome' => 'مرحبا يا صديقي  ',
     'i want' => 'اريد ان اصبح دكتور ',
+    'firstName required' => 'هذا الحقل مطلوب ',
+    'lastName required' => 'هذا الحقل مطلوب ',
+    'email required' => 'هذا الحقل مطلوب ',
+    'username required' => 'هذا الحقل مطلوب ',
+    'password required' => 'هذا الحقل مطلوب  ',
+
 
 
 ];

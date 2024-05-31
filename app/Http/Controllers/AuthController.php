@@ -64,7 +64,11 @@ class AuthController extends Controller
     public function doRegister(Request $request){
 
 
-        $rules = [
+
+        $messages = $this->getMessages();
+
+
+       $rules = [
             'firstName'=> 'required|min:3|max:60',
             'lastName'=> 'required|min:3|max:60',
             'email'=> 'required|email|min:6|max:125|unique:users,email',
@@ -72,7 +76,7 @@ class AuthController extends Controller
             'username'=> 'required|min:3|max:60|unique:users,username',
         ];
 
-        $validator = Validator::make($request->all() , $rules);
+        $validator = Validator::make($request->all() , $rules ,$messages);
 
         if ($validator->fails()){
             return redirect()->back()->withInput($request->all())
@@ -88,9 +92,21 @@ class AuthController extends Controller
       $newUser->username = $request->get('username');
       $newUser->save();
 
+
         $result =  Auth::attempt(['username'=>$newUser->username , 'password'=>$request->get('password')]);
 
         return redirect('/category');
 
+    }
+
+    protected function getMessages(){
+        return $messages = [
+            'firstName.required' =>__('messages.firstName required'),
+            'lastName.required' =>__('messages.lastName required'),
+            'email.required' =>__('messages.email required'),
+            'password.required' =>__('messages.password required'),
+            'username.required' =>__('messages.username required'),
+
+        ];
     }
 }
